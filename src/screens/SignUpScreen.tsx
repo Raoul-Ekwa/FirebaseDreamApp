@@ -28,7 +28,7 @@ const LoginScreen = () => {
           <MyButton title={'Sign Up'} />
 
           <View style={styles.OuText}>
-            <Text>Ou</Text>
+            <Text style={{fontFamily: 'Audiowide-Regular'}}>Ou</Text>
             <Image source={require("../assets/image_vers_le_bas.png")} style={styles.flecheVersLebas}/>
           </View>
 
