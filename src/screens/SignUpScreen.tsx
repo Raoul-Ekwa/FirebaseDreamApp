@@ -4,32 +4,70 @@ import {
   Text,
   View,
   Image,
+  Alert,
 } from 'react-native';
-//import AntDesign from 'react-native-vector-icons/AntDesign';
-import React from 'react';
-import {Colors} from '../../constant/Colors';
+import React, { useState } from 'react';
+import { Colors } from '../../constant/Colors';
 import MyButton from '../composants/MyButton';
 import MyTextInput from '../composants/MyTextInput';
 import SocialMedia from '../composants/SocialMedia';
+import auth from '@react-native-firebase/auth';
 
+const SignUpScreen = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-const LoginScreen = () => {
+  const signUpTestFn = () => {
+    if (password !== confirmPassword) {
+      Alert.alert("Les mots de passe ne correspondent pas");
+      return;
+    }
+
+    auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        console.log("Utilisateur créé");
+        Alert.alert("Compte créé avec succès !");
+      })
+      .catch((err) => {
+        console.log(err);
+        Alert.alert("Erreur", "Une erreur est survenue lors de la création du compte");
+      });
+  };
+
   return (
     <View style={styles.container}>
       <ImageBackground
         source={require('../assets/background.png')}
         style={styles.bgImage}>
-
         <View style={styles.inputContainer}>
-          <MyTextInput placeholder="E-mail" />
-          <MyTextInput placeholder="Mot de passe" secureTextEntry />
-          <MyTextInput placeholder="Confirmrz le mot de passe" secureTextEntry />
+          <MyTextInput
+            value={email}
+            onChangeText={text => setEmail(text)}
+            placeholder="E-mail"
+          />
+          <MyTextInput
+            value={password}
+            onChangeText={text => setPassword(text)}
+            placeholder="Mot de passe"
+            secureTextEntry
+          />
+          <MyTextInput
+            value={confirmPassword}
+            onChangeText={text => setConfirmPassword(text)}
+            placeholder="Confirmer le mot de passe"
+            secureTextEntry
+          />
 
-          <MyButton title={'Sign Up'} />
+          <MyButton onPress={signUpTestFn} title={'Sign Up'} />
 
           <View style={styles.OuText}>
-            <Text style={{fontFamily: 'Audiowide-Regular'}}>Ou</Text>
-            <Image source={require("../assets/image_vers_le_bas.png")} style={styles.flecheVersLebas}/>
+            <Text style={{ fontFamily: 'Audiowide-Regular' }}>Ou</Text>
+            <Image
+              source={require("../assets/image_vers_le_bas.png")}
+              style={styles.flecheVersLebas}
+            />
           </View>
 
           <SocialMedia />
@@ -39,18 +77,16 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default SignUpScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    
   },
   bgImage: {
     alignItems: 'center',
     height: '100%',
-    paddingHorizontal: 20
-    
+    paddingHorizontal: 20,
   },
   inputContainer: {
     width: '100%',
@@ -75,5 +111,5 @@ const styles = StyleSheet.create({
     height: 35,
     resizeMode: 'contain',
     marginTop: 5,
-  }
+  },
 });

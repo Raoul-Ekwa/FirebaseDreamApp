@@ -6,9 +6,9 @@ import { Colors } from '../../constant/Colors'
 interface Props {
     title: string;
 } 
-const MyButton : FC<Props>  = ({ title }) => {
+const MyButton : FC<Props>  = ({ title, onPress }) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container}  onPress={onPress}>
       <Text style={styles.titleText}>{title}</Text>
     </TouchableOpacity>
   )

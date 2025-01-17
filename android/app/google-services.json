@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "94623561842",
+    "project_id": "fir-dreamapp-a2874",
+    "storage_bucket": "fir-dreamapp-a2874.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94623561842:android:7a28ea89d0919438c7eaeb",
+        "android_client_info": {
+          "package_name": "com.firebasedreamapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARC8unzcVkHVHvWTGQHu7bzhDCQsJEPfA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
