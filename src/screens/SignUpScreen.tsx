@@ -13,7 +13,7 @@ import MyTextInput from '../composants/MyTextInput';
 import SocialMedia from '../composants/SocialMedia';
 import auth from '@react-native-firebase/auth';
 
-const SignUpScreen = () => {
+const SignUpScreen = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -29,10 +29,11 @@ const SignUpScreen = () => {
       .then(() => {
         console.log("Utilisateur créé");
         Alert.alert("Compte créé avec succès !");
+        navigation.navigate('Login');
       })
       .catch((err) => {
-        console.log(err);
-        Alert.alert("Erreur", "Une erreur est survenue lors de la création du compte");
+        console.log(err.message);
+        Alert.alert(err.message);
       });
   };
 

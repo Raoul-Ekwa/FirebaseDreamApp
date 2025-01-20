@@ -9,17 +9,44 @@ import {
     Alert,
   } from 'react-native';
   //import AntDesign from 'react-native-vector-icons/AntDesign';
-  import React from 'react';
+  import React, { useState } from 'react';
   import {Colors} from '../../constant/Colors';
   import MyButton from '../composants/MyButton';
   import MyTextInput from '../composants/MyTextInput';
   import SocialMedia from '../composants/SocialMedia';
-  
+  import auth from '@react-native-firebase/auth'
 
   const CreerCompte = () => {
-    Alert.alert('Creer un Compte')
+    Alert.alert('Tu veux creer un Compte?')
   }
-  const LoginScreen = () => {
+
+  const LoginScreen = ({navigation}) => {
+    const loginWithEmailAndPassword = () => {
+      if (!email || !password) {
+        Alert.alert("Veuillez entrer un email et un mot de passe valides.");
+        return;
+      }
+    
+      auth().signInWithEmailAndPassword(email, password)
+        .then((res) => {
+          console.log(res);
+          Alert.alert("Connexion réussie!");
+          navigation.navigate('Home');
+        })
+        .catch((err) => {
+          console.log(err);
+          if (err && err.message) {
+            Alert.alert(err.message);
+          } else {
+            Alert.alert("Une erreur inconnue s'est produite.");
+          }
+        });
+    };
+    
+
+     const [email, setEmail] = useState("")
+     const [password, setPassword] = useState("")
+
     return (
       <View style={styles.container}>
         <ImageBackground
@@ -32,8 +59,8 @@ import {
           <Text style={styles.title}>Fatmore</Text>
   
           <View style={styles.inputContainer}>
-            <MyTextInput placeholder="E-mail" />
-            <MyTextInput placeholder="Mot de passe" secureTextEntry />
+            <MyTextInput value={email} onChangeText={text => setEmail(text)} placeholder="E-mail" />
+            <MyTextInput value={password} onChangeText={text => setPassword(text)} placeholder="Mot de passe" secureTextEntry />
 
             <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 3, marginLeft: 90, marginTop: 10}}>
                 <Text style={{ fontSize:12}}>Vous avez deja un compte?</Text>
@@ -42,7 +69,7 @@ import {
                 </TouchableOpacity>
             </View>
   
-            <MyButton title={'Login'} />
+            <MyButton title={'Login'} onPress={loginWithEmailAndPassword}/>
   
             <View style={styles.OuText}>
               <Text style={{fontFamily: 'Audiowide-Regular'}}>Ou</Text>
