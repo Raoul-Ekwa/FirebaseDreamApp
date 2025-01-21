@@ -50,13 +50,14 @@ import {
     return (
       <View style={styles.container}>
         <ImageBackground
-          source={require('../assets/background.png')}
+          source={require('../assets/images/imageAvecCouleurSantaLucia.png')}
           style={styles.bgImage}>
+
           <Image
-            source={require('../assets/food/food.png')}
-            style={styles.imageHeader}
+            source={require('../assets/images/logoSantaLucia.png')}
+            style={styles.logoSantaLucia}
           />
-          <Text style={styles.title}>Fatmore</Text>
+          
   
           <View style={styles.inputContainer}>
             <MyTextInput value={email} onChangeText={text => setEmail(text)} placeholder="E-mail" />
@@ -95,12 +96,12 @@ import {
       paddingHorizontal: 20,
       
     },
-    imageHeader: {
-      width: 100,
+    logoSantaLucia: {
+      width: '70%',
       height: 100,
-      position: 'absolute',
-      top: Platform.OS == 'android' ? 20 : 50,
-      right: 20,
+      //position: 'absolute',
+      //top: Platform.OS == 'android' ? 20 : 50,
+      //right: 20,
       resizeMode: 'contain',
     },
     titleWrappe: {
@@ -124,7 +125,12 @@ import {
       alignItems: 'center',
       marginTop: 30,
       paddingHorizontal: 20,
-      gap: 10
+      gap: 10,
+      shadowColor: 'black',
+      shadowOpacity: 0.2,
+      shadowRadius: 5,
+      elevation: 5,
+      shadowOffset: { width: 0, height: 5 },
     },
     pasdeCompte: {
       marginTop: 20,

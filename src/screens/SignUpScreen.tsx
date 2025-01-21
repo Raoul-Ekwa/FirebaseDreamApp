@@ -40,8 +40,14 @@ const SignUpScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require('../assets/background.png')}
+        source={require('../assets/images/imageAvecCouleurSantaLucia.png')}
         style={styles.bgImage}>
+
+          <Image
+            source={require('../assets/images/logoSantaLucia.png')}
+            style={styles.logoSantaLucia}
+          />
+          
         <View style={styles.inputContainer}>
           <MyTextInput
             value={email}
@@ -89,16 +95,27 @@ const styles = StyleSheet.create({
     height: '100%',
     paddingHorizontal: 20,
   },
-  inputContainer: {
+  logoSantaLucia: {
+    width: "100%",
+    height: 60,
+    resizeMode: 'contain',
+    marginTop:80
+  },
+    inputContainer: {
     width: '100%',
     backgroundColor: Colors.white,
     borderRadius: 20,
     height: 500,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 50,
     paddingHorizontal: 20,
     gap: 10,
+    shadowColor: 'black',
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 5,
+    shadowOffset: { width: 0, height: 5 },
   },
   OuText: {
     flexDirection: 'column',

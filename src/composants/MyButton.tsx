@@ -18,7 +18,7 @@ export default MyButton
 
 const styles = StyleSheet.create({
     container: {
-      backgroundColor: '#ff0036',
+      backgroundColor: '#02489B',
       borderRadius: 30,
       height: 50,
       width: "100%",
